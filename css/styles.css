@@ -160,7 +160,9 @@ button:hover {
 #overlay.lose {
   display: none;
 }
-
+.hit {
+    color: grey;
+}
 .start {
   background-color: var(--color-start);
 }
@@ -184,23 +186,3 @@ button:hover {
 .lose a {
   color: var(--color-lose);
 }
-/******************************/
-/*additional css
-#phrase{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-}
-
-
-
-#phrase li {
-    background: grey;
-    height: 3rem;
-    width: 3rem;
-    text-align: center;
-    padding: 1rem;
-}
-
-
-/*additional css*/
-/**************************/
