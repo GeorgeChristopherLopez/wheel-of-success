@@ -26,6 +26,10 @@ const phrases = ["Papercut", "One Step Closer", "With You", "Points of Authority
 
 
 const startGame = () => {
+    let tries = document.getElementsByClassName('tries');
+    for (let x = 0; x < tries.length; x++) {
+        console.log(tries[x].innerHTML = '<img src="images/liveHeart.png" height="35px" width="30px">');
+    }
     startOverlay.style.display = "none";
     winOverlay.style.display = "none";
     loseOverlay.style.display = "none";
@@ -73,11 +77,14 @@ qwerty.addEventListener('click', event => {
     let hit = false;
     let array = document.getElementsByClassName('letter');
     for (el of array) {
-        if (el.innerHTML.toLowerCase() == clicked) {
+        if (el.classList.contains('show') == false) {
+            hit = true;
+        } else if (el.innerHTML.toLowerCase() == clicked) {
             el.classList.add('show');
+            clicked.classList.add('correct');
             hit = true;
             correct++;
-        }
+        } 
     }
 
     if (hit === false) {
