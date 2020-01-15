@@ -30,6 +30,12 @@ const startGame = () => {
     for (let x = 0; x < tries.length; x++) {
         console.log(tries[x].innerHTML = '<img src="images/liveHeart.png" height="35px" width="30px">');
     }
+
+    let array = document.getElementsByTagName('button');
+    for (el of array) {
+        el.classList.remove('show');
+        el.classList.remove('wrong');
+    }
     startOverlay.style.display = "none";
     winOverlay.style.display = "none";
     loseOverlay.style.display = "none";
@@ -73,22 +79,26 @@ startBtn.addEventListener("click", () => {
 
 // button click
 qwerty.addEventListener('click', event => {
-    let clicked = event.target.innerHTML;
+    let clicked = event.target;
     let hit = false;
     let array = document.getElementsByClassName('letter');
     for (el of array) {
-        if (el.classList.contains('show') == false) {
-            hit = true;
-        } else if (el.innerHTML.toLowerCase() == clicked) {
+        if (el.innerHTML.toLowerCase() == clicked.innerHTML && el.classList.contains('show') == false) {
             el.classList.add('show');
-            clicked.classList.add('correct');
+            clicked.classList.add('show');
             hit = true;
             correct++;
-        } 
+        } else if (el.innerHTML.toLowerCase() == clicked.innerHTML && el.classList.contains('show') == true) {
+            hit = null;
+        } else {
+
+
+        }
     }
 
-    if (hit === false) {
+    if (hit === false && clicked.tagName == "BUTTON") {
         missed++;
+        clicked.classList.add('wrong');
         let tries = document.getElementsByClassName('tries');
         for (let x = 0; x < missed; x++) {
             console.log(tries[x].innerHTML = '<img src="images/lostHeart.png" height="35px" width="30px">');
